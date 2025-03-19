@@ -1,8 +1,8 @@
-﻿"use client"; // Krävs för att använda useState och useEffect i en klientkomponent
+﻿"use client"; // Gör att vi kan använda useState och useEffect.
 
 import { useState, useEffect } from "react";
 
-// Definiera en typ för en produkt
+// Definiera en typ för produkterna
 type Product = {
     id: number;
     name: string;
@@ -11,14 +11,14 @@ type Product = {
 };
 
 export default function Products() {
-    // Använd useState med rätt typ
+    // Använd rätt typ för state
     const [products, setProducts] = useState<Product[]>([]);
 
     // Funktion för att hämta produkter från API:et
     useEffect(() => {
         fetch("/api/products")
             .then((res) => res.json()) // Omvandla svaret till JSON
-            .then((data: Product[]) => setProducts(data)) // Ange att data är en lista av Product
+            .then((data: Product[]) => setProducts(data)) // Spara datan i vår state
             .catch((error) => console.error("Fel vid hämtning av produkter:", error));
     }, []);
 
